@@ -26,6 +26,24 @@ void LinearEquation(
     rootsCount = 0;
 }
 
+int LinearEquation(
+    double a, // Коэф. а
+    double b,  // Коэф. b
+    double& root        // Это сам корень, если он есть
+)
+{
+    if (a != 0)
+    { // Имеем 1 корень
+        root = -b / a;
+        return 1;
+    }
+    if (b == 0)
+    {   // Имеем беск. множ. решений.
+        return 2;
+    }
+    return 0;
+}
+
 int main()
 {
     setlocale(LC_ALL, "");
@@ -38,6 +56,18 @@ int main()
     switch (rootsCount)
     {
     case 0: 
+        cout << "Корней нет\n";
+        break;
+    case 1:
+        cout << "x = " << x << endl;
+        break;
+    case 2:
+        cout << "x - любое число";
+        break;
+    }
+    switch (LinearEquation(a, b, x))
+    {
+    case 0:
         cout << "Корней нет\n";
         break;
     case 1:
