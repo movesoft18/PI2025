@@ -14,4 +14,22 @@ int main()
         sum += i;
     }
     cout << "Сумма " << sum << endl;
+    
+    float x = -6.7;
+    float y = x / 2;
+    if (x >= -10)
+
+    {
+
+        x = x + 1;
+
+        y = x + 2;
+
+    }
+    else
+    {
+        x = x - 1;
+        y = y - 1;
+    }
+
 }
