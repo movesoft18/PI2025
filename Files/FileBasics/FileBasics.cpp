@@ -7,7 +7,7 @@ int main()
 {
     std::ofstream f;
     //...
-    f.open("test.txt");
+    f.open("test.txt", std::ios::binary);
     if (f)
     {
         f << "Hello World!\n";
