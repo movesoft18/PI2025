@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filesystem_example", "files
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSorter", "FileSorter\FileSorter.vcxproj", "{458B992F-1709-4CE6-855D-F28AFC110BEA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FilesCountAndSize", "FilesCountAndSize\FilesCountAndSize.vcxproj", "{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{458B992F-1709-4CE6-855D-F28AFC110BEA}.Release|x64.Build.0 = Release|x64
 		{458B992F-1709-4CE6-855D-F28AFC110BEA}.Release|x86.ActiveCfg = Release|Win32
 		{458B992F-1709-4CE6-855D-F28AFC110BEA}.Release|x86.Build.0 = Release|Win32
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Debug|x64.ActiveCfg = Debug|x64
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Debug|x64.Build.0 = Debug|x64
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Debug|x86.ActiveCfg = Debug|Win32
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Debug|x86.Build.0 = Debug|Win32
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Release|x64.ActiveCfg = Release|x64
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Release|x64.Build.0 = Release|x64
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Release|x86.ActiveCfg = Release|Win32
+		{FF9B1C1F-CAF1-4982-B3A4-EA30D22C441B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
