@@ -45,7 +45,7 @@ int main()
 	char trackbarWindow[] = "Trackbar";
 	char sizeWindow[] = "Size";
 	char thresholdWindow[] = "Threshold";
-	int min = 0, max = 10000;
+	int min = 100, max = 100000;
 	int hmin = 0, smin = 0, vmin = 0,
 		hmax = 180, smax = 255, vmax = 255,
 		x = 0, y = 0;
@@ -65,7 +65,7 @@ int main()
 	createTrackbar("Size max:", sizeWindow, &max, max);
 
 	for (;;) {
-
+		Mat image = frame.clone();
 		cvtColor(frame, HSV, COLOR_BGR2HSV);
 
 		inRange(HSV,
@@ -73,17 +73,18 @@ int main()
 			Scalar(hmax, smax, vmax),
 			threshold);
 		Moments mom = moments(threshold, true);
-		double dM01 = mom.m01;
-		double dM10 = mom.m10;
-		double dArea = mom.m00;
+		double dM01 = mom.m01; // сумма х координат точек
+		double dM10 = mom.m10; // сумма у координат точек
+		double dArea = mom.m00; // кол-во точек
 		//будем реагировать только на те моменты,
 		//которые содержать больше заданного кол-ва пикселей
 		if (dArea >= min && dArea < max)
 		{
 			x = dM10 / dArea;
 			y = dM01 / dArea;
+			circle(image, Point(x, y), 7, Scalar(255, 255, 0), -1);
 		}
-		imshow(mainWindow, frame);
+		imshow(mainWindow, image);
 		imshow(thresholdWindow, threshold);
 		if (waitKey(1) == 27) break;
 	}
