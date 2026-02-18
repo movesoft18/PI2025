@@ -66,3 +66,7 @@ ListItem* FindAll(ListItem* firstItem, const char* productName);
 bool SaveListToBinaryFile(ListItem* firstItem, const std::string& filename);
 
 ListItem* LoadListFromBinaryFile(const std::string& filename);
+
+bool SaveListToTextFile(ListItem* firstItem, const std::string& filename);
+
+ListItem* LoadListFromTextFile(const std::string& filename);

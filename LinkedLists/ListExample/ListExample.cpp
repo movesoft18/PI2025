@@ -7,6 +7,7 @@ ListItem* first = nullptr;
 int main()
 {
     setlocale(LC_ALL, "");
+    first = LoadListFromTextFile("goods.txt");
     AddFirst(first, 1, "Яблоки", 93.99, 100); // добавляем в начало первый элемент Яблоки
     AddFirst(first, 3, "Бананы", 72, 90);   // добавляем в начало второй элемент Бананы, бананы стают первыми, Яблоки вторыми
     auto oranges = AddLast(first, 4, "Апельсины", 89.99, 50.7); // добавляем в конец Апельсины, oranges - указатель на апельсины
@@ -15,6 +16,7 @@ int main()
     auto persimmon = AddAfter(kiwi, 6, "Хурма", 159.99, 27); // вставить после киви
     auto i2 = Delete(first, kiwi); // удаляем киви
     auto bananas2 = AddLast(first, 9, "Бананы", 160, 43);
+    AddFirst(first, 10, "Лук репчатый", 23, 987.56);
     PrintList(first);
 
     auto m = Find(first, "Бананы");
@@ -41,12 +43,12 @@ int main()
     }
     else 
         cout << "Бананы не найдены:\n";
-    if (SaveListToBinaryFile(first, "goods.bin"))
+    if (SaveListToTextFile(first, "goods.txt"))
         cout << "Список успешно сохранен\n";
     else
         cout << "Ошибка сохраниения списка\n";
     DeleteList(first);
-    first = LoadListFromBinaryFile("goods.bin");
+    first = LoadListFromTextFile("goods.txt");
     PrintList(first);
 }
 

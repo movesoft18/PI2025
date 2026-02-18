@@ -238,3 +238,48 @@ ListItem* LoadListFromBinaryFile(const std::string& filename)
     f.close();
     return first;
 }
+
+void Replace(char* str, char what, char value)
+{
+    int len = strlen(str);
+    for (int i = 0; i < len; i++)
+        if (str[i] == what)
+            str[i] = value;
+}
+
+// Сохраняет список в тексторый файл. Каждая строка - сведения об одном товаре
+bool SaveListToTextFile(ListItem* firstItem, const std::string& filename)
+{
+    if (firstItem == nullptr) return false;
+    std::ofstream f(filename);
+    if (!f) return false;
+    auto temp = firstItem;
+    char nameCopy[30];
+    while (temp != nullptr)
+    {
+        strcpy_s(nameCopy, temp->name);
+        Replace(nameCopy, ' ', '_');
+        f << temp->id << " " << nameCopy << " "
+            << temp->price << " " << temp->count << "\n";
+        temp = temp->next;
+    }
+    bool result = f.good();
+    f.close();
+    return result;
+}
+
+ListItem* LoadListFromTextFile(const std::string& filename)
+{
+    std::ifstream f(filename);
+    if (!f) return nullptr;
+    ListItem item;
+    ListItem* first = nullptr;
+    while (f >> item.id >> item.name >> 
+        item.price >> item.count)
+    {
+        Replace(item.name, '_', ' ');
+        AddLast(first, item.id, item.name, item.price, item.count);
+    }
+    f.close();
+    return first;
+}
