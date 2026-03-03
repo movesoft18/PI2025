@@ -8,7 +8,7 @@ using namespace cv;
 int main()
 {
 	Mat frame;
-	VideoCapture capture(0);
+	VideoCapture capture;
 	capture.set(CAP_PROP_FRAME_WIDTH, 320);
 	capture.set(CAP_PROP_FRAME_HEIGHT, 240);
 	//capture.set(CAP_PROP_FPS, 3);
