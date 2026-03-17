@@ -21,6 +21,7 @@ int main()
 		resize(frame1, frame1, Size(80, 60));
 		namedWindow("Difference");
 		resizeWindow("Difference", 200, 200);
+		int motionCount = 0;
 		while (true)
 		{
 			auto res = capture.read(frame2);
@@ -34,8 +35,12 @@ int main()
 			auto pixelsDiff = m.m00;
 			if (pixelsDiff > thresh)
 			{
-				cout << "Alarm !!!\n";
+				motionCount++;
+				if (motionCount > 10)
+					cout << "Alarm !!!\n";
 			}
+			else
+				motionCount = 0;
 			cout << pixelsDiff << endl;
 			imshow("Difference", diff);
 			auto key = waitKey(200);
