@@ -17,8 +17,9 @@ int main()
 	Canny(gray, edged, 10, 200);
 	imwrite("edged.jpg", edged);
 	imshow("edged", edged);
-	kernel = getStructuringElement(MORPH_RECT, Size(7, 7));
+	kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
 	morphologyEx(edged, closed, MORPH_CLOSE, kernel);
+	dilate(closed, closed, kernel, Point(-1, -1), 1);
 	imwrite("closed.jpg", closed);
 	imshow("closed", closed);
 	findContours(closed, cnts, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
