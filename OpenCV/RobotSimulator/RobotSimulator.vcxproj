@@ -129,8 +129,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>c:\opencv\build\x64\vc15\lib; lib</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>c:\opencv\build\x64\vc15\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_world452.lib;%(AdditionalDependencies);robot.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

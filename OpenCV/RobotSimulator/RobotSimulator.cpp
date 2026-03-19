@@ -20,24 +20,48 @@ void studentRobotControl(RobotSimulator& robot) {
 
     // Получение изображения с камеры робота
     cv::Mat view = robot.getVisibleImage();
-
-
-    // так вы можете получить копию изображения с камеры для манипуляций с ним
     cv::Mat display = view.clone();
+    cvtColor(display, display, cv::COLOR_BGR2HSV);
+    cv::medianBlur(display, display, 15);
+    cv::Mat bin;
+    cv::inRange(display, cv::Scalar(20, 179, 161), cv::Scalar(34, 255, 233), bin);
+    // так вы можете получить копию изображения с камеры для манипуляций с ним
+    auto m = cv::moments(bin, true);
+    int x = m.m10 / m.m00;
+    int y = m.m01 / m.m00;
 
     // вы можете отображать в отдельном окне любые промежуточные результаты обработки изображений
-    cv::imshow("User Robot View", display);
+    cv::imshow("User Robot View", bin);
 
     // так можно получить шаг поворота камеры в пикселах
     // камера поворачивается на фиксированное значение
-    //int step = robot.getStepSize();
+    int step = robot.getStepSize();
 
     // Так можете получить координаты центра изображения с камеры робота
     int centerX = view.cols / 2;
     int centerY = view.rows / 2;
-
-
-    // Демонстрация перемешения камеры - по циклу влево-вверх-вних-вправо
+    /*
+    // Поэтапное позиционирование на 1 шаг за итерацию
+    if (x - centerX > step) robot.moveRight();
+    else if (centerX - x > step) robot.moveLeft();
+    if (y - centerY > step) robot.moveDown();
+    else if (centerY - y > step) robot.moveUp();
+    */
+    // Мгновенное позиционирование с вычислением кол-ва шагов поворота камеры
+    if (x - centerX > step) 
+        for (int i = 0; i < (x - centerX) / step; i++) 
+            robot.moveRight();
+    else if (centerX - x > step) 
+        for (int i = 0; i < (centerX - x) / step; i++) 
+            robot.moveLeft();
+    if (y - centerY > step) 
+        for (int i = 0; i < (y - centerY) / step; i++) 
+            robot.moveDown();
+    else if (centerY - y > step) 
+        for (int i = 0; i < (centerY - y) / step; i++) 
+            robot.moveUp();
+    
+    /*/ Демонстрация перемешения камеры - по циклу влево-вверх-вних-вправо
     if (count < 20)
     {
         switch (direction)
@@ -58,7 +82,7 @@ void studentRobotControl(RobotSimulator& robot) {
         count = 0;
         direction = (direction + 1) % 4;
     }
-        
+        */
 
 }
 
@@ -103,7 +127,7 @@ int main() {
             }
 
             // Ручное управление
-            char key = cv::waitKey(100);
+            char key = cv::waitKey(10);
 
             switch (key) {
             case 'w': robot.moveUp(); break;
