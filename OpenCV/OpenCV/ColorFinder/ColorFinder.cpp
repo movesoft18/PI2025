@@ -54,7 +54,7 @@ int main()
 	namedWindow(thresholdWindow);
 	namedWindow(mainWindow);
 	namedWindow(sizeWindow);
-	frame = imread("background.png");
+	frame = imread("v2.png");
 	createTrackbar("H min:", trackbarWindow, &hmin, hmax);
 	createTrackbar("H max:", trackbarWindow, &hmax, hmax);
 	createTrackbar("S min:", trackbarWindow, &smin, smax);

@@ -9,7 +9,8 @@ Mat image, gray, edged, kernel, closed;
 vector<vector<Point>> cnts;
 int main()
 {
-	image = imread("1.jpg");
+	image = imread("matches1.png");
+	resize(image, image, Size(), 2, 2);
 	cvtColor(image, gray, COLOR_BGR2GRAY);
 	GaussianBlur(gray, gray, Size(3, 3), 0);
 	imwrite("gray.jpg", gray);
@@ -19,25 +20,36 @@ int main()
 	imshow("edged", edged);
 	kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
 	morphologyEx(edged, closed, MORPH_CLOSE, kernel);
-	dilate(closed, closed, kernel, Point(-1, -1), 1);
+	dilate(closed, closed, kernel, Point(-1, -1), 2);
+	//erode(closed, closed, kernel, Point(-1, -1), 1);
 	imwrite("closed.jpg", closed);
 	imshow("closed", closed);
 	findContours(closed, cnts, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 	int total = 0;
 	vector<Point> approx;
 	vector<vector<Point>> drawing;
+	vector<vector<Point>> bed;
 	for (auto& c : cnts)
 	{
 		double peri = arcLength(c, true);
 		approxPolyDP(c, approx, 0.02 * peri, true);
+		//approxPolyDP(approx, approx, 0.03 * peri, true);
 		if (approx.size() == 4)
 		{
 			drawing.push_back(approx);
 			total++;
 		}
+		else
+		{
+			bed.push_back(approx);
+		}
+
 	}
 	if (drawing.size() > 0)
-		drawContours(image, drawing, -1, Scalar(0, 255, 0), 4);
+		drawContours(image, drawing, -1, Scalar(0, 255, 0), 3);
+	if (bed.size() > 0)
+		drawContours(image, bed, -1, Scalar(0, 0, 255), 3);
+
 	cout << "Found " << total << " books in this image" << endl;
 	imshow("result", image);
 	imwrite("output.jpg", image);
