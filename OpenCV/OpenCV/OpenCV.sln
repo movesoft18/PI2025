@@ -25,6 +25,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotionDetector", "MotionDet
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EdgeSubtraction", "EdgeSubtraction\EdgeSubtraction.vcxproj", "{806C3696-9C8A-4142-9CF5-047F00DDB883}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatchTemplate", "MatchTemplate\MatchTemplate.vcxproj", "{3EC81506-B655-4B26-AD0D-E57575686165}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjectFinder", "ObjectFinder\ObjectFinder.vcxproj", "{C8B69CEA-2943-492A-91CC-49A876DFFCB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +125,22 @@ Global
 		{806C3696-9C8A-4142-9CF5-047F00DDB883}.Release|x64.Build.0 = Release|x64
 		{806C3696-9C8A-4142-9CF5-047F00DDB883}.Release|x86.ActiveCfg = Release|Win32
 		{806C3696-9C8A-4142-9CF5-047F00DDB883}.Release|x86.Build.0 = Release|Win32
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Debug|x64.ActiveCfg = Debug|x64
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Debug|x64.Build.0 = Debug|x64
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Debug|x86.ActiveCfg = Debug|Win32
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Debug|x86.Build.0 = Debug|Win32
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Release|x64.ActiveCfg = Release|x64
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Release|x64.Build.0 = Release|x64
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Release|x86.ActiveCfg = Release|Win32
+		{3EC81506-B655-4B26-AD0D-E57575686165}.Release|x86.Build.0 = Release|Win32
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Debug|x64.ActiveCfg = Debug|x64
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Debug|x64.Build.0 = Debug|x64
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Debug|x86.ActiveCfg = Debug|Win32
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Debug|x86.Build.0 = Debug|Win32
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Release|x64.ActiveCfg = Release|x64
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Release|x64.Build.0 = Release|x64
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Release|x86.ActiveCfg = Release|Win32
+		{C8B69CEA-2943-492A-91CC-49A876DFFCB6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

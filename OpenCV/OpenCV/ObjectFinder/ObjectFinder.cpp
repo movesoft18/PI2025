@@ -1,0 +1,57 @@
+﻿#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main()
+{
+
+    vector<int> coords;
+    double corr = 1;
+    int x, y;
+    double minVal;
+    double maxVal;
+    Point minLoc;
+    Point maxLoc;
+    Mat img = imread("field.jpg");
+    Mat copy = imread("field.jpg");
+    Mat temp = imread("template.jpg");
+
+    Mat result;
+    if (img.empty() || temp.empty())
+    {
+        cout << "Can't read one of the images" << endl;
+        return 1;
+    }
+    matchTemplate(img, temp, result, TM_CCORR_NORMED);
+
+    while (corr >= 0.87)
+    {
+        minMaxLoc(result, &minVal, &corr, &minLoc, &maxLoc);
+        x = maxLoc.x;
+        y = maxLoc.y;
+        //result.at<float>(maxLoc) = 0.f; // Плохой способ
+        if (corr >= 0.87)
+        {
+            // выкалываем из матрицы результатов найденный объект
+            circle(result, Point(maxLoc), temp.cols / 2,
+                Scalar(0, 0, 0), -1);
+            // сохраняем координаты в векторе
+            coords.push_back(x);
+            coords.push_back(y);
+            // рисуем прямоугольник вокруг найденного объекта
+            rectangle(copy, Rect(x, y, temp.cols, temp.rows), Scalar(255, 0, 255), 2);
+        }
+        imshow("corr", result);
+        imwrite("result.jpg", result);
+        imshow("Result", copy);
+        waitKey();
+    }
+    for (auto i = 0; i < coords.size() / 2; i++)
+    {
+        cout << coords[i * 2] << ' ' << coords[i * 2 + 1] << endl;
+    }
+}
