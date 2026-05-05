@@ -13,12 +13,12 @@ int main()
 	CascadeClassifier cascade;
 	vector<Rect> faces;
 	
-	if (!cascade.load("C:\\openCV\\build\\etc\\haarcascades\\haarcascade_frontalface_alt2.xml"))
+	if (!cascade.load("C:\\openCV\\build\\etc\\haarcascades\\haarcascade_eye.xml"))
 	//if (!cascade.load("C:\\openCV\\build\\etc\\haarcascades\\haarcascade_russian_plate_number.xml"))
 			return 1;
-	Mat img = imread("2.jpg");
+	Mat img = imread("people.jpg");
 
-	cascade.detectMultiScale(img, faces , 1.03, 5, 0, Size(5, 5), Size(50, 50));
+	cascade.detectMultiScale(img, faces, 1.1, 4, 0, Size(5, 5), Size(35, 35));
 	//cascade.detectMultiScale(img, faces);// , 1.03, 5, 0, Size(5, 5), Size(50, 50));
 	for (auto& face : faces)
 	{
