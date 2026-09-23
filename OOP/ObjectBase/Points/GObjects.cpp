@@ -1,4 +1,4 @@
-#include "GObjects.h"
+п»ї#include "GObjects.h"
 
 sf::RenderWindow window(sf::VideoMode(800, 600), "OOP Points");
 
@@ -35,23 +35,23 @@ void PointBase::Draw(bool show)
     }
     object.setOutlineThickness(1);
     object.setPosition(x, y);
-    window.draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
+    window.draw(object); // Р·РґРµСЃСЊ РјС‹ РїРѕРєР° РїРѕСЃС‚СѓРїР°РµРј РЅРµРїСЂР°РІРёР»СЊРЅРѕ, РѕР±СЂР°С‰Р°СЏСЃСЊ Рє РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ (РїРѕР±РѕС‡РЅС‹Р№ СЌС„С„РµРєС‚)
 }
 
-// метод отображения точки
+// РјРµС‚РѕРґ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ С‚РѕС‡РєРё
 void PointBase::Show()
 {
     Draw(true);
     visible = true;
 }
 
-// метод скрытия точки
+// РјРµС‚РѕРґ СЃРєСЂС‹С‚РёСЏ С‚РѕС‡РєРё
 void PointBase::Hide()
 {
     Draw(false);
     visible = false;
 }
-// метод перемещения точки в новую абсолютную позицию
+// РјРµС‚РѕРґ РїРµСЂРµРјРµС‰РµРЅРёСЏ С‚РѕС‡РєРё РІ РЅРѕРІСѓСЋ Р°Р±СЃРѕР»СЋС‚РЅСѓСЋ РїРѕР·РёС†РёСЋ
 void PointBase::Move(int newX, int newY)
 {
     bool visibleState = visible;
@@ -60,7 +60,7 @@ void PointBase::Move(int newX, int newY)
     y = newY;
     if (visibleState) Show();
 }
-// метод перемещения точки в новую относительную позицию
+// РјРµС‚РѕРґ РїРµСЂРµРјРµС‰РµРЅРёСЏ С‚РѕС‡РєРё РІ РЅРѕРІСѓСЋ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
 void PointBase::MoveRel(int dx, int dy)
 {
     bool visibleState = visible;
@@ -70,7 +70,7 @@ void PointBase::MoveRel(int dx, int dy)
     if (visibleState) Show();
 }
 
-// геттеры - получение защищенных полей
+// РіРµС‚С‚РµСЂС‹ - РїРѕР»СѓС‡РµРЅРёРµ Р·Р°С‰РёС‰РµРЅРЅС‹С… РїРѕР»РµР№
 bool PointBase::GetVisible() const
 {
     return visible;
@@ -86,15 +86,15 @@ float PointBase::GetY() const
     return y;
 }
 
-// сеттеры - изменение защищенных полей
+// СЃРµС‚С‚РµСЂС‹ - РёР·РјРµРЅРµРЅРёРµ Р·Р°С‰РёС‰РµРЅРЅС‹С… РїРѕР»РµР№
 void PointBase::SetX(float newX)
 {
-    Move(newX, y); // используем готовый метод перемещения точки
+    Move(newX, y); // РёСЃРїРѕР»СЊР·СѓРµРј РіРѕС‚РѕРІС‹Р№ РјРµС‚РѕРґ РїРµСЂРµРјРµС‰РµРЅРёСЏ С‚РѕС‡РєРё
 }
 
 void PointBase::SetY(float newY)
 {
-    Move(x, newY); // используем готовый метод перемещения точки
+    Move(x, newY); // РёСЃРїРѕР»СЊР·СѓРµРј РіРѕС‚РѕРІС‹Р№ РјРµС‚РѕРґ РїРµСЂРµРјРµС‰РµРЅРёСЏ С‚РѕС‡РєРё
 }
 
 ColorPoint::ColorPoint(
@@ -130,6 +130,6 @@ void ColorPoint::Draw(bool show)
     }
     object.setOutlineThickness(1);
     object.setPosition(GetX(), GetY());
-    window.draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
+    window.draw(object); // Р·РґРµСЃСЊ РјС‹ РїРѕРєР° РїРѕСЃС‚СѓРїР°РµРј РЅРµРїСЂР°РІРёР»СЊРЅРѕ, РѕР±СЂР°С‰Р°СЏСЃСЊ Рє РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ (РїРѕР±РѕС‡РЅС‹Р№ СЌС„С„РµРєС‚)
 }
 
