@@ -133,3 +133,90 @@ void ColorPoint::Draw(bool show)
     window.draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
 }
 
+Circle::Circle(float x, float y, float radius,
+    sf::Color color, bool visible):
+    ColorPoint(x, y, color, false), radius(radius)
+{
+    if (visible) Show();
+}
+
+Circle::~Circle()
+{
+    if (GetVisible()) Hide();
+}
+
+float Circle::getRadius() const
+{
+    return radius;
+}
+
+void Circle::setRadius(float newRadius)
+{
+    radius = newRadius;
+    if (GetVisible()) Show();
+}
+
+void Circle::Draw(bool show)
+{
+    // устанавливаем прозрачный цвет фона
+    object.setFillColor(sf::Color::Transparent);
+    // устанавливаем радиус
+    object.setRadius(radius);
+    if (show)
+    {
+        object.setOutlineColor(getColor());
+    }
+    else
+    {
+        object.setOutlineColor(sf::Color::Black);
+    }
+    object.setOutlineThickness(1);
+    object.setPosition(GetX(), GetY());
+    window.draw(object);
+}
+
+
+
+FillCircle::FillCircle(float x, float y, float radius,
+    sf::Color color,sf::Color fillColor, bool visible) :
+    Circle(x,y,radius, color, false),
+    fillColor(fillColor)
+{
+    if (visible) Show();
+}
+
+FillCircle::~FillCircle()
+{
+    if (GetVisible()) Hide();
+}
+
+sf::Color FillCircle::GetColor() const
+{
+    return fillColor;
+}
+
+void FillCircle::SetColor(sf::Color newColor) 
+{
+    fillColor = newColor;
+    if (GetVisible()) Show();
+}
+
+void FillCircle::Draw(bool show)
+{
+    object.setFillColor(sf::Color::Transparent);
+    // устанавливаем радиус
+    object.setRadius(getRadius());
+    if (show)
+    {
+        object.setOutlineColor(getColor());
+        object.setFillColor(fillColor);
+    }
+    else
+    {
+        object.setOutlineColor(sf::Color::Black);
+        object.setFillColor(sf::Color::Black);
+    }
+    object.setOutlineThickness(1);
+    object.setPosition(GetX(), GetY());
+    window.draw(object);
+}

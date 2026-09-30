@@ -47,5 +47,29 @@ public:
     void setColor(sf::Color newColor);
     sf::Color getColor() const;
 protected:
-    virtual void Draw(bool show);
+    void Draw(bool show) override;
+};
+
+class Circle : public ColorPoint
+{
+    float radius;
+protected:
+    void Draw(bool show) override;
+public:
+    Circle(float x, float y, float radius, sf::Color color = sf::Color::White, bool visible = false);
+    virtual ~Circle();
+    float getRadius() const;
+    void setRadius(float newRadius);
+};
+class FillCircle : public Circle
+{
+    sf::Color fillColor;
+public:
+    FillCircle(float x, float y, float radius, 
+        sf::Color color = sf::Color::White,sf::Color fillColor = sf::Color::Blue, bool visible = false);
+    virtual ~FillCircle();
+    sf::Color GetColor() const;
+    void SetColor(sf::Color newColor);
+protected:
+    void Draw(bool show) override;
 };

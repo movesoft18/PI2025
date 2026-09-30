@@ -17,11 +17,14 @@ int main()
         float y = rand() % 600;
         if (rand() % 2 == 0)
             points[i] = new ColorPoint(x, y, sf::Color::Green, true);
-        else
+        else if (rand() % 3 == 0)
             points[i] = new PointBase(x, y, true);
+        else if (rand() % 5 == 0)
+            points[i] = new Circle(x, y, 30, sf::Color::Cyan, true);
+        else
+            points[i] = new FillCircle(x, y, 30, sf::Color::Yellow, sf::Color::White, true);
     }
-
-    // Объект, который, собственно, является главным окном приложения
+        // Объект, который, собственно, является главным окном приложения
     // Главный цикл приложения. Выполняется, пока открыто окно
     while (window.isOpen())
     {
@@ -46,6 +49,8 @@ int main()
       // Отрисовка окна 
        window.display();
     }
+    for (int i = 0; i < count; i++)
+        delete points[i];
     return 0;
 }
 
