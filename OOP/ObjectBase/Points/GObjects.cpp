@@ -1,6 +1,6 @@
 ﻿#include "GObjects.h"
 
-sf::RenderWindow window(sf::VideoMode(800, 600), "OOP Points");
+//sf::RenderWindow window(sf::VideoMode(800, 600), "OOP Points");
 
 PointBase::PointBase(float x, float y, bool visible) 
     : 
@@ -23,6 +23,7 @@ PointBase::~PointBase()
 
 void PointBase::Draw(bool show)
 {
+    if (!window) return;
     if (show)
     {
         object.setFillColor(sf::Color::White);
@@ -35,7 +36,7 @@ void PointBase::Draw(bool show)
     }
     object.setOutlineThickness(1);
     object.setPosition(x, y);
-    window.draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
+    window->draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
 }
 
 // метод отображения точки
@@ -105,6 +106,11 @@ ColorPoint::ColorPoint(
     if (visible) Show();
 }
 
+ColorPoint::~ColorPoint()
+{
+    if (GetVisible()) Hide();
+}
+
 void ColorPoint::setColor(sf::Color newColor)
 {
     color = newColor;
@@ -118,6 +124,7 @@ sf::Color ColorPoint::getColor() const
 
 void ColorPoint::Draw(bool show)
 {
+    if (!window) return;
     if (show)
     {
         object.setFillColor(color);
@@ -130,7 +137,7 @@ void ColorPoint::Draw(bool show)
     }
     object.setOutlineThickness(1);
     object.setPosition(GetX(), GetY());
-    window.draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
+    window->draw(object); // здесь мы пока поступаем неправильно, обращаясь к глобальной переменной (побочный эффект)
 }
 
 Circle::Circle(float x, float y, float radius,
@@ -158,6 +165,7 @@ void Circle::setRadius(float newRadius)
 
 void Circle::Draw(bool show)
 {
+    if (!window) return;
     // устанавливаем прозрачный цвет фона
     object.setFillColor(sf::Color::Transparent);
     // устанавливаем радиус
@@ -172,7 +180,7 @@ void Circle::Draw(bool show)
     }
     object.setOutlineThickness(1);
     object.setPosition(GetX(), GetY());
-    window.draw(object);
+    window->draw(object);
 }
 
 
@@ -203,6 +211,7 @@ void FillCircle::SetColor(sf::Color newColor)
 
 void FillCircle::Draw(bool show)
 {
+    if (!window) return;
     object.setFillColor(sf::Color::Transparent);
     // устанавливаем радиус
     object.setRadius(getRadius());
@@ -218,5 +227,39 @@ void FillCircle::Draw(bool show)
     }
     object.setOutlineThickness(1);
     object.setPosition(GetX(), GetY());
-    window.draw(object);
+    window->draw(object);
 }
+
+void Rectangle::Draw(bool show) 
+{
+    if (!window) return;
+    // устанавливаем прозрачный цвет фона
+    object1.setFillColor(sf::Color::Transparent);
+    // задаем радиус
+    if (show)
+    {
+        object1.setOutlineColor(getColor());
+    }
+    else
+    {
+        object1.setOutlineColor(sf::Color::Black);
+    }
+    object1.setOutlineThickness(1);
+    object1.setPosition(GetX(), GetY());
+    window->draw(object1);
+}
+
+Rectangle::Rectangle(float x, float y, float width, float height, sf::Color color, bool visible) :
+    ColorPoint(x, y, color, false), width(width), height(height), object1(sf::RectangleShape(sf::Vector2f(width, height)))
+{
+    if (visible) Show();
+}
+
+Rectangle::~Rectangle()
+{
+    if (GetVisible()) Hide();
+}
+
+
+// инициализация статического поля
+sf::RenderWindow* PointBase::window = nullptr;

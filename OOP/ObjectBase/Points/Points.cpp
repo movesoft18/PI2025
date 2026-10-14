@@ -8,7 +8,9 @@ using namespace sf;
 constexpr int count = 100;
 int main()
 {
+    sf::RenderWindow window(sf::VideoMode(800, 600), "OOP Points");
     window.setFramerateLimit(5);
+    PointBase::SetRenderWindow(&window);
     PointBase* points[count]; // массив указателей на объекты
     // генерируем случайные объекты
     for (int i = 0; i < count; i++)

@@ -1,0 +1,60 @@
+﻿#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <conio.h>
+#include "GObjects.h"
+using namespace sf;
+
+// базовый класс
+constexpr int count = 100;
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(800, 600), "OOP Points");
+    window.setFramerateLimit(5);
+    PointBase::SetRenderWindow(&window);
+    PointBase* points[count]; // массив указателей на объекты
+    // генерируем случайные объекты
+    for (int i = 0; i < count; i++)
+    {
+        float x = rand() % 800;
+        float y = rand() % 600;
+        if (rand() % 2 == 0)
+            points[i] = new ColorPoint(x, y, sf::Color::Green, true);
+        else if (rand() % 3 == 0)
+            points[i] = new PointBase(x, y, true);
+        else if (rand() % 5 == 0)
+            points[i] = new Circle(x, y, 30, sf::Color::Cyan, true);
+        else if (rand() % 7 == 0)
+            points[i] = new Rectangle(x, y, 30, 10, sf::Color::Cyan, true);
+        else
+            points[i] = new FillCircle(x, y, 30, sf::Color::Yellow, sf::Color::White, true);
+    }
+        // Объект, который, собственно, является главным окном приложения
+    // Главный цикл приложения. Выполняется, пока открыто окно
+    while (window.isOpen())
+    {
+        window.clear();
+        for (int i = 0; i < count; i++)
+            points[i]->Show();
+        // Обрабатываем очередь событий в цикле
+        Event event;
+        while (window.pollEvent(event))
+        {
+            // Пользователь нажал на «крестик» и хочет закрыть окно?
+            if (event.type == Event::Closed)
+                // тогда закрываем его
+                window.close();
+            else if (event.type == Event::KeyPressed)
+            {
+                if (event.key.code == Keyboard::Space)
+                    for (int i = 0; i < count; i++)
+                        points[i]->MoveRel(10, 10);
+            }
+       }
+      // Отрисовка окна 
+       window.display();
+    }
+    for (int i = 0; i < count; i++)
+        delete points[i];
+    return 0;
+}
+
