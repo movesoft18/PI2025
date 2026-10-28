@@ -2,11 +2,11 @@ from ultralytics import YOLO
 import cv2
 
 # Загрузить модель
-model = YOLO("yolo26n.pt")  # загрузить официальную модель
+model = YOLO(r"runs\detect\my_first_model-3\weights\best.pt")  # загрузить официальную модель
 #model = YOLO("path/to/best.pt")  # загрузить пользовательскую модель
 
 # Получи предсказания с помощью модели
-results = model("street1.jpg", conf=0.5)  # получи предсказание для изображения
+results = model("balloons4.jpg", conf=0.2)  # получи предсказание для изображения
 image = cv2.imread("street1.jpg")
 cv2.imshow("Original", image)
 # Обратись к результатам
