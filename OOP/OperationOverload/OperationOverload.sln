@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OperationOverload", "OperationOverload\OperationOverload.vcxproj", "{191925D4-5E9C-45B0-8312-EBE7D537A714}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IndexOp", "IndexOp\IndexOp.vcxproj", "{BF984491-7423-4616-B6C4-F98D78EDB709}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OperatorBracket", "OperatorBracket\OperatorBracket.vcxproj", "{552A7B74-58A8-459D-A1FD-171FCEB0C012}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,22 @@ Global
 		{191925D4-5E9C-45B0-8312-EBE7D537A714}.Release|x64.Build.0 = Release|x64
 		{191925D4-5E9C-45B0-8312-EBE7D537A714}.Release|x86.ActiveCfg = Release|Win32
 		{191925D4-5E9C-45B0-8312-EBE7D537A714}.Release|x86.Build.0 = Release|Win32
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Debug|x64.ActiveCfg = Debug|x64
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Debug|x64.Build.0 = Debug|x64
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Debug|x86.ActiveCfg = Debug|Win32
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Debug|x86.Build.0 = Debug|Win32
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Release|x64.ActiveCfg = Release|x64
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Release|x64.Build.0 = Release|x64
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Release|x86.ActiveCfg = Release|Win32
+		{BF984491-7423-4616-B6C4-F98D78EDB709}.Release|x86.Build.0 = Release|Win32
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Debug|x64.ActiveCfg = Debug|x64
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Debug|x64.Build.0 = Debug|x64
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Debug|x86.ActiveCfg = Debug|Win32
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Debug|x86.Build.0 = Debug|Win32
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Release|x64.ActiveCfg = Release|x64
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Release|x64.Build.0 = Release|x64
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Release|x86.ActiveCfg = Release|Win32
+		{552A7B74-58A8-459D-A1FD-171FCEB0C012}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

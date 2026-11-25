@@ -110,6 +110,39 @@ public:
         this->Div(c);
         return *this;
     }
+
+    friend istream& operator >> (istream& is, Complex& c);
+
+    Complex& operator++() // префиксная форма ++obj
+    {
+        a++;
+        return *this;
+    }
+
+    Complex operator++(int) // постфиксная форма obj++
+    {     
+        Complex temp{ *this };
+
+        //++(*this); // применяем оператор
+        a++;
+        // возвращаем временную переменную
+        return temp; // возвращаем сохраненное состояние
+    }
+
+    Complex& operator--() // префиксная форма --obj
+    {
+        a--;
+        return *this;
+    }
+
+    Complex operator--(int) // постфиксная форма obj--
+    {
+        Complex temp{ *this };
+
+        a--;
+        // возвращаем временную переменную
+        return temp; // возвращаем сохраненное состояние
+    }
 };
 
 Complex operator + (const Complex& c1, const Complex& c2)
@@ -196,6 +229,18 @@ bool operator != (const Complex& c1, const Complex& c2) // перегружае�
     return !(c1 == c2);
 }
 
+ostream&  operator << (ostream& os, const Complex& c)
+{
+    os << c.ToString();
+    return os;
+}
+
+istream& operator >> (istream& is, Complex& c)
+{
+    is >> c.a >> c.b;
+    return is;
+}
+
 int main()
 {
     Complex x1(2, 4); // 2+4*i определяем 3 комплексных числа
@@ -228,6 +273,19 @@ int main()
 
     double x = 3.1, y = 9.9, z = -0.8;
     double t = (x + y - z) * 5.5;
+
+    cout << res << " " << x1 << 5.6 << endl;
+    // --- без >>
+    double r, i;
+    cin >> r >> i;
+    Complex obj(r, i);
+    // ---- c >>
+    Complex obj1(0,0);
+    cout << "Введите через пробел действительную и мнимую часть числа: ";
+    cin >> obj1;
+    ++obj1;
+    obj++;
+    cout << obj1 << endl;
 }
 
 /*

@@ -18,7 +18,7 @@ while cap.isOpened():
                 img_path=frame,
                 db_path="face_base\\",
                 model_name="Facenet",
-                detector_backend="retinaface",
+                #detector_backend="retinaface",
                 enforce_detection=False,
                 silent=True,
             )
